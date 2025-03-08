@@ -3,12 +3,7 @@ from random import choice
 from enum import Enum
 from duckduckgo_search import DDGS
 from bot.config import GOOGLE_API_KEY, GOOGLE_CSE_ID
-
-
-class Searcher(Enum):
-    GOOGLE = "google"
-    DUCKDUCKGO = "duckduckgo"
-
+from enums.enums import Searcher
 
 current_searcher = Searcher.GOOGLE
 
