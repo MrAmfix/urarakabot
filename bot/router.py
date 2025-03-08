@@ -1,3 +1,4 @@
+import bot.searcher
 from random import choice
 from aiogram import Router
 from aiogram.enums import ParseMode
@@ -32,7 +33,7 @@ async def set_searcher(message: Message):
     try:
         searcher_value = message.text.split()[1].lower()
         new_searcher = Searcher(searcher_value)
-        import bot
+        import bot.searcher
         bot.searcher.current_searcher = new_searcher
         await message.reply(f"Тип поиска обновлён на {new_searcher.value}.")
     except (IndexError, ValueError):
@@ -108,5 +109,5 @@ async def start(message: Message):
         'Привет, я бот, отправляющий картинки с Очако Ураракой\n'
         'Hi, I\'m a bot that sends pictures of Ochaco Uraraka from My Hero Academia.\n\n'
         'Команды / Commands:\n'
-        '/uraraka\n/izuocha\n/start_index\n/set_searcher'
+        '/uraraka\n/izuocha\n/start_index\n/searcher'
     )
