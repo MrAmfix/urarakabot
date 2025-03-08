@@ -5,7 +5,7 @@ from aiogram.enums import ParseMode
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
 from bot.config import OWNER_ID
-from bot.searcher import Searcher, current_searcher, search_image
+from bot.searcher import Searcher, search_image
 from bot.utils import get_inline_keyboard
 
 
@@ -21,7 +21,7 @@ start_index = 0
 
 @urt.message(Command('searcher'))
 async def show_searcher(message: Message):
-    await message.reply(f'{current_searcher.value}\n`/set_searcher`',
+    await message.reply(f'{bot.searcher.current_searcher.value}\n`/set_searcher`',
                         parse_mode=ParseMode.MARKDOWN_V2)
 
 
@@ -33,7 +33,6 @@ async def set_searcher(message: Message):
     try:
         searcher_value = message.text.split()[1].lower()
         new_searcher = Searcher(searcher_value)
-        import bot.searcher
         bot.searcher.current_searcher = new_searcher
         await message.reply(f"Тип поиска обновлён на {new_searcher.value}.")
     except (IndexError, ValueError):
